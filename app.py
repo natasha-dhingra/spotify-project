@@ -9,7 +9,7 @@ class Spotify_Recommendation():
         self.dataset = dataset
     def recommend(self, songs, amount=1):
         distance = []
-        song = self.dataset[(self.dataset['name'].str.lower() == songs.lower())].head(1).values[0]
+        song = self.dataset[self.dataset['name'].str.lower() == songs.lower()].head(1).values[0]
         rec = self.dataset[self.dataset['name'].str.lower() != songs.lower()]
         for songs in tqdm(rec.values):
             d = 0
