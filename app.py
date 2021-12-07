@@ -25,7 +25,7 @@ class Spotify_Recommendation():
 
 app = Flask(__name__)
 df = pd.read_csv('spotify clusters.csv')
-#recommendations = Spotify_Recommendation(df)
+recommendations = Spotify_Recommendation(df)
 
 
 @app.route('/')
@@ -38,17 +38,15 @@ def recommend():
     song = request.form['song']
     number = int(request.form['recnumber'])
     
-#     output = ""
-#     title = "Songs Similar To " + string.capwords(song) + ":"
-#     i = 1
-#     recs = recommendations.recommend(song, number)
-#     for artists, songs in recs.values:
-#         output += Markup(str(i) + ". " + songs + " by " + artists[1:-1].replace("'", "").replace('"', "") + "<br>")
-#         i+= 1
+    output = ""
+    title = "Songs Similar To " + string.capwords(song) + ":"
+    i = 1
+    recs = recommendations.recommend(song, number)
+    for artists, songs in recs.values:
+        output += Markup(str(i) + ". " + songs + " by " + artists[1:-1].replace("'", "").replace('"', "") + "<br>")
+        i+= 1
 
-#     return render_template('home.html', song_user_likes=title, song_recs=output)
-
-    return render_template('home.html', song_user_likes = df.columns)
+    return render_template('home.html', song_user_likes=title, song_recs=output)
 
 
 if __name__ == '__main__':
