@@ -37,6 +37,10 @@ def home():
 def recommend():
     song = request.form['song']
     number = int(request.form['recnumber'])
+    
+    print("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+    print(df.info())
+    print("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
 
     output = ""
     title = "Songs Similar To " + string.capwords(song) + ":"
